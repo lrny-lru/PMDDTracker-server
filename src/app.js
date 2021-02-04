@@ -22,7 +22,7 @@ app.use(cors())
 app.get('/', (req, res) => {
     res.send('Hello, world!')
 })
-app.use(tuckRouter)
+app.use(pmddRouter)
 
 app.use(errorHandler)
 

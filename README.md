@@ -1,6 +1,8 @@
 # PMDDTracker (Server)
 
+Live demo: https://pmddtracker.vercel.app/
 
+Client: https://github.com/lrny-lru/PMDDTracker
 
 ## Public Endpoints 
 

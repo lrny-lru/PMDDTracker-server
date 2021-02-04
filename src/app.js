@@ -5,7 +5,7 @@ const cors = require('cors')
 const helmet = require('helmet')
 const errorHandler = require('./error-handler')
 //const validateBearerToken = require('./validate-bearer-token')
-const tuckRouter = require('./router/pmdd-router')
+const pmddRouter = require('./router/pmdd-router')
 
 const app = express()
 

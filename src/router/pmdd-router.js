@@ -1,8 +1,8 @@
 const express = require("express");
 const xss = require("xss");
-const tuckService = require("./pmdd-service");
+const pmddService = require("./pmdd-service");
 
-const tuckRouter = express.Router();
+const pmddRouter = express.Router();
 const bodyParser = express.json();
 
 const serializeSymptom = (symptom) => ({
@@ -13,10 +13,10 @@ const serializeSymptom = (symptom) => ({
   description: xss(symptom.description),
 });
 
-tuckRouter
+pmddRouter
   .route("/symptoms")
   .get((req, res, next) => {
-    tuckService
+    pmddService
       .getAllSymptoms(req.app.get("db"))
       .then((symptoms) => {
         res.json(symptoms.map(serializeSymptom));
@@ -34,7 +34,7 @@ tuckRouter
     const { severity, name, description } = req.body;
     const newSymptom = { severity, name, description };
 
-    tuckService
+    pmddService
       .insertSymptom(req.app.get("db"), newSymptom)
       .then((symptom) => {
         console.log(`new symptom with id ${symptom.id} was created`);
@@ -46,11 +46,11 @@ tuckRouter
       .catch(next);
   });
 
-tuckRouter
+pmddRouter
   .route("/symptoms/:id")
   .all((req, res, next) => {
     const { id } = req.params;
-    tuckService
+    pmddService
       .getSymptomById(req.app.get("db"), id)
       .then((symptom) => {
         if (!symptom) {
@@ -69,7 +69,7 @@ tuckRouter
   })
   .delete((req, res, next) => {
     const { id } = req.params;
-    tuckService
+    pmddService
       .deleteSymptom(req.app.get("db"), id)
       .then((shifted) => {
         console.log(`Symptom with id of ${id} was deleted`);
@@ -81,7 +81,7 @@ tuckRouter
     const { severity, name, description } = req.body;
     const updateSymptom = { severity, name, description }
 
-    tuckService.updateSymptom(
+    pmddService.updateSymptom(
         req.app.get('db'),
         req.params.id,
         updateSymptom
@@ -92,4 +92,4 @@ tuckRouter
     .catch(next)
   })
 
-module.exports = tuckRouter;
+module.exports = pmddRouter;

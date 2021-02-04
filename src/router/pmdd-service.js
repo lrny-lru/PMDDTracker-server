@@ -1,4 +1,4 @@
-const tuckService = {
+const pmddService = {
     getAllSymptoms(knex) {
       return knex.select('*').from('symptoms');
     },
@@ -25,4 +25,4 @@ const tuckService = {
         .update(updatedSymptom)
     }
 };
-module.exports = tuckService
+module.exports = pmddService

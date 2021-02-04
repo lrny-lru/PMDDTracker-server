@@ -1,6 +1,6 @@
 const express = require("express");
 const xss = require("xss");
-const tuckService = require("./tuck-service");
+const tuckService = require("./pmdd-service");
 
 const tuckRouter = express.Router();
 const bodyParser = express.json();
